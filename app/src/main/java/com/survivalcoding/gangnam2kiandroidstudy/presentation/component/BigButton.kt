@@ -10,6 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -55,8 +58,13 @@ fun BigButton(
                 )
             }
             Spacer(modifier = Modifier.width(11.dp))
+//            Icon(
+//                painter = painterResource(R.drawable.arrow_forward_24px),
+//                tint = AppColors.white,
+//                contentDescription = "오른쪽 화살표"
+//            )
             Icon(
-                painter = painterResource(R.drawable.arrow_forward_24px),
+                Icons.AutoMirrored.Filled.ArrowForward,
                 tint = AppColors.white,
                 contentDescription = "오른쪽 화살표"
             )
