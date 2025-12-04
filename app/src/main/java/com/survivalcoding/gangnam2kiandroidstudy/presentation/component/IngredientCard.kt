@@ -42,7 +42,6 @@ fun IngredientCard(
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 15.dp, vertical = 12.dp),
-            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             imageLoader(Modifier)

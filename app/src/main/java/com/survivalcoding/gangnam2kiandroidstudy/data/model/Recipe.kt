@@ -7,5 +7,5 @@ data class Recipe(
     val image: String = "",
     val chef: String = "",
     val time: String = "",
-    val raring: Double = 0.0
+    val rating: Double = 0.0
 )

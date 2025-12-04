@@ -1,6 +1,5 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation
 
-import RecipeCard
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +23,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.FilterBu
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.IngredientCard
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.RateRecipeDialog
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.RatingButton
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.RecipeCard
 
 @Composable
 fun Day2Components() {
@@ -39,7 +39,7 @@ fun Day2Components() {
         Column {
             IngredientCard(
                 RecipeIngredientUI(
-                    name = "Tomatos",
+                    name = "Tomatoes",
                     amount = 500,
                     image = "https://cdn.pixabay.com/photo/2017/10/06/17/17/tomato-2823826_1280.jpg"
                 )

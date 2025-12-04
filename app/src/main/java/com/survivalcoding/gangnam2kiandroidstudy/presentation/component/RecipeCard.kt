@@ -1,3 +1,5 @@
+package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -56,7 +58,7 @@ fun RecipeCard(
             )
             Spacer(modifier = Modifier.width(3.dp))
             Text(
-                text = recipe.raring.toString(),
+                text = recipe.rating.toString(),
                 style = AppTextStyles.smallerTextRegular,
                 color = Color.Black
             )
