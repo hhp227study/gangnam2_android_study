@@ -1,5 +1,8 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -15,7 +18,7 @@ class TabsKtTest {
 
     @Test
     fun `탭을_클릭하면_선택된_인덱스가_변경된다`() {
-        var selected = 0
+        var selected by mutableStateOf(0)
 
         composeRule.setContent {
             Tabs(

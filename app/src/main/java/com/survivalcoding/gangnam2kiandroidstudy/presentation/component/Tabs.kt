@@ -32,7 +32,6 @@ fun Tabs(
         modifier = modifier
             .size(width = 375.dp, height = 58.dp)
             .padding(horizontal = (60f / tabs.size).dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         tabs.forEachIndexed { index, label ->

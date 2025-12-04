@@ -1,5 +1,8 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
@@ -17,7 +20,7 @@ class InputFieldKtTest {
 
     @Test
     fun `입력필드_텍스트가_정상적으로_변경된다`() {
-        var text = ""
+        var text by mutableStateOf("")
 
         composeRule.setContent {
             InputField(
