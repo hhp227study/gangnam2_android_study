@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,8 +25,11 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
 fun RateRecipeDialog(
+    title: String,
     onDismiss: () -> Unit,
-    onChange: (Int) -> Unit
+    onChange: (Int) -> Unit,
+    starFilled: Painter = painterResource(R.drawable.star_7),
+    starEmpty: Painter = painterResource(R.drawable.star_8)
 ) {
     var rating by remember { mutableStateOf(0) }
 
@@ -42,7 +46,7 @@ fun RateRecipeDialog(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Rate recipe",
+                    text = title,
                     fontWeight = FontWeight.Medium,
                     color = Color.Black,
                     style = AppTextStyles.smallerTextRegular
@@ -51,7 +55,7 @@ fun RateRecipeDialog(
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     for (i in 1..5) {
                         Image(
-                            painter = painterResource(if (i <= rating) R.drawable.star_7 else R.drawable.star_8),
+                            painter = if (i <= rating) starFilled else starEmpty,
                             contentDescription = null,
                             modifier = Modifier
                                 .size(20.dp)
@@ -91,5 +95,5 @@ fun RateRecipeDialog(
 @Preview(showBackground = true)
 @Composable
 fun RateRecipeDialogPreview() {
-    RateRecipeDialog(fun() = Unit, fun(_) = Unit)
+    RateRecipeDialog("Rate recipe", fun() = Unit, fun(_) = Unit)
 }

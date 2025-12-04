@@ -26,7 +26,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 fun RecipeCard(
     recipe: Recipe,
     modifier: Modifier = Modifier,
-    imageLoader: @Composable (modifier: Modifier) -> Unit = {
+    imageLoader: @Composable (Modifier) -> Unit = { modifier ->
         AsyncImage(
             model = recipe.image,
             contentDescription = null,

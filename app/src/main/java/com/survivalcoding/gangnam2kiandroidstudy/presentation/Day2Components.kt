@@ -69,6 +69,7 @@ fun Day2Components() {
             }
             if (openDialog) {
                 RateRecipeDialog(
+                    "Rate recipe",
                     onDismiss = { openDialog = false },
                     onChange = { rating ->
                         openDialog = false

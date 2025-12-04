@@ -1,5 +1,6 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,16 +11,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.survivalcoding.gangnam2kiandroidstudy.R
 import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredientUI
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
-fun IngredientCard(ingredient: RecipeIngredientUI, modifier: Modifier = Modifier) {
+fun IngredientCard(
+    ingredient: RecipeIngredientUI,
+    modifier: Modifier = Modifier,
+    imageLoader: @Composable (modifier: Modifier) -> Unit = { modifier ->
+        AsyncImage(
+            ingredient.image,
+            modifier = modifier
+                .size(width = 52.dp, height = 52.dp)
+                .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+                .clip(RoundedCornerShape(10.dp)),
+            contentDescription = ""
+        )
+    }
+) {
     Card(
         modifier = modifier.fillMaxWidth().height(76.dp),
         shape = RoundedCornerShape(12.dp)
@@ -29,14 +45,7 @@ fun IngredientCard(ingredient: RecipeIngredientUI, modifier: Modifier = Modifier
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                ingredient.image,
-                modifier = Modifier
-                    .size(width = 52.dp, height = 52.dp)
-                    .background(color = Color.White, shape = RoundedCornerShape(10.dp))
-                    .clip(RoundedCornerShape(10.dp)),
-                contentDescription = ""
-            )
+            imageLoader(Modifier)
             Text(
                 ingredient.name,
                 fontWeight = FontWeight.SemiBold,
@@ -58,5 +67,14 @@ fun IngredientCard(ingredient: RecipeIngredientUI, modifier: Modifier = Modifier
 fun IngredientCardPreview() {
     val ingredient = RecipeIngredientUI("Tomatos", 500, "https://cdn.pixabay.com/photo/2017/10/06/17/17/tomato-2823826_1280.jpg")
 
-    IngredientCard(ingredient)
+    IngredientCard(ingredient) { modifier ->
+        Image(
+            painter = painterResource(R.drawable.ic_launcher_background),
+            modifier = modifier
+                .size(width = 52.dp, height = 52.dp)
+                .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+                .clip(RoundedCornerShape(10.dp)),
+            contentDescription = ""
+        )
+    }
 }
