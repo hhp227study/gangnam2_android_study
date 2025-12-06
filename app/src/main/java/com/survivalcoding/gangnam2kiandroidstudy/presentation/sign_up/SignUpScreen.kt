@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -34,6 +33,7 @@ fun SignUpScreen(
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -88,9 +88,9 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(20.dp))
             InputField(
                 label = "Confirm Password",
-                value = password,
+                value = confirmPassword,
                 modifier = Modifier.fillMaxWidth(),
-                onValueChange = { password = it },
+                onValueChange = { confirmPassword = it },
                 placeholder = "Retype Password"
             )
             Spacer(modifier = Modifier.height(20.dp))
