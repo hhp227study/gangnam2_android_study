@@ -28,7 +28,7 @@ fun BorderCheckbox(
             .size(17.dp)
             .clip(RoundedCornerShape(5.dp))
             .border(1.dp, AppColors.secondary100, RoundedCornerShape(5.dp))
-            .background(if (checked) Color(0xFF4285F4) else Color.Transparent)
+            .background(if (checked) AppColors.secondary100 else Color.Transparent)
             .clickable { onCheckedChange(!checked) },
         contentAlignment = Alignment.Center
     ) {

@@ -27,7 +27,7 @@ fun SignUpScreen(
     onSignUp: () -> Unit = {},
     onGoogleLoginClick: () -> Unit = {},
     onFacebookLoginClick: () -> Unit = {},
-    onSignIn: () -> Unit = {}
+    onSignInClick: () -> Unit = {}
 ) {
     var checked by remember { mutableStateOf(false) }
     var name by remember { mutableStateOf("") }
@@ -155,7 +155,7 @@ fun SignUpScreen(
                     text = "Sign In",
                     fontSize = 14.sp,
                     color = AppColors.secondary100,
-                    modifier = Modifier.clickable { onSignIn() },
+                    modifier = Modifier.clickable { onSignInClick() },
                     style = AppTextStyles.smallerTextRegular
                 )
             }
