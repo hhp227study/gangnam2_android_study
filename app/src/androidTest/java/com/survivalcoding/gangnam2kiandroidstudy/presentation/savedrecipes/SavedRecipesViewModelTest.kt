@@ -1,8 +1,8 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes
 
 import com.survivalcoding.gangnam2kiandroidstudy.data.MockRecipeDataSource
-import com.survivalcoding.gangnam2kiandroidstudy.data.MockRecipeRepository
 import com.survivalcoding.gangnam2kiandroidstudy.data.model.Recipe
+import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -80,7 +80,7 @@ class SavedRecipesViewModelFakeTest {
             Recipe(2, "Burger")
         )
         val dataSource = MockRecipeDataSource(fakeJson)
-        val repository = MockRecipeRepository(dataSource)
+        val repository = RecipeRepositoryImpl.getInstance(dataSource)
 
         // when
         val viewModel = SavedRecipesViewModel(repository)
@@ -106,7 +106,7 @@ class SavedRecipesViewModelFakeTest {
         // given
         val error = Exception("Network error")
         val dataSource = MockRecipeDataSource(fakeJson)
-        val repository = MockRecipeRepository(dataSource)
+        val repository = RecipeRepositoryImpl.getInstance(dataSource)
 
         // when
         val viewModel = SavedRecipesViewModel(repository)
