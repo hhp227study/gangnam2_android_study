@@ -51,9 +51,9 @@ class RecipeDataSourceTest {
 }
     """.trimIndent()
 
-    private val fakeAssetManager = FakeAssetManager(fakeJson)
+    private val mockAssetManager = MockAssetManager(fakeJson)
 
-    private val dataSource = RecipeDataSourceImpl.getInstance(fakeAssetManager)
+    private val dataSource = RecipeDataSourceImpl.getInstance(mockAssetManager)
 
     @Test
     fun `테스트`() {
