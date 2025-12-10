@@ -84,11 +84,7 @@ class SavedRecipesViewModelFakeTest {
         // Given
         val dataSource = MockRecipeDataSource(fakeJson)
         val repository = RecipeRepositoryImpl.getInstance(dataSource)
-        val dispatcher = UnconfinedTestDispatcher(testScheduler)
-
-        val viewModel = SavedRecipesViewModel(repository).apply {
-            this.viewModelScope.coroutineContext + dispatcher
-        }
+        val viewModel = SavedRecipesViewModel(repository)
 
         // When
         // init{} 안에서 fetchRecipes() 실행 → 비동기 → Idle 시점까지 진척
