@@ -24,6 +24,9 @@ sealed interface Route : NavKey {
     data object SavedRecipes : Route
 
     @Serializable
+    data object Search : Route
+
+    @Serializable
     data object Notification : Route
 
     @Serializable

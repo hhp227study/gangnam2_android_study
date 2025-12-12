@@ -26,7 +26,7 @@ fun SavedRecipesScreen(
             when {
                 !uiState.recipes.isEmpty() -> {
                     LazyColumn(
-                        contentPadding = PaddingValues(horizontal = 30.dp, vertical = 10.dp),
+                        contentPadding = PaddingValues(top = 10.dp, bottom = 44.dp, start = 30.dp, end = 30.dp),
                         verticalArrangement = Arrangement.spacedBy(20.dp)
                     ) {
                         items(uiState.recipes) { recipe ->

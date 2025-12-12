@@ -27,7 +27,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 fun HomeScreen(
     uiState: HomeUiState,
     onSearchKeywordChange: (String) -> Unit,
-    onSelectCategory: (String) -> Unit
+    onSelectCategory: (String) -> Unit,
+    onSearchKeywordFocusChanged: (Boolean) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize().navigationBarsPadding()) {
         Spacer(modifier = Modifier.height(54.dp))
@@ -66,7 +67,8 @@ fun HomeScreen(
                 value = uiState.searchKeyword,
                 modifier = Modifier.weight(1f),
                 onValueChange = onSearchKeywordChange,
-                placeholder = "Search recipe"
+                placeholder = "Search recipe",
+                onFocusChanged = onSearchKeywordFocusChanged
             )
             Spacer(modifier = Modifier.width(20.dp))
             Button(
@@ -110,5 +112,10 @@ fun HomeScreen(
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(HomeUiState(), onSearchKeywordChange = {}, onSelectCategory = {})
+    HomeScreen(
+        uiState = HomeUiState(),
+        onSearchKeywordChange = {},
+        onSelectCategory = {},
+        onSearchKeywordFocusChanged = {}
+    )
 }

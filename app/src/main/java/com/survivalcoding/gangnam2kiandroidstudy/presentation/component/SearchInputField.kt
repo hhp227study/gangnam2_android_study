@@ -30,11 +30,13 @@ fun SearchInputField(
     enabled: Boolean = true,
     isOutlined: Boolean = true,
     focusedBorderColor: Color = AppColors.primary80,
-    unfocusedBorderColor: Color = AppColors.gray4
+    unfocusedBorderColor: Color = AppColors.gray4,
+    onFocusChanged: (Boolean) -> Unit = {},
 ) {
     var isFocused by remember { mutableStateOf(false) }
     val focusModifier = Modifier.onFocusChanged { focusState ->
         isFocused = focusState.isFocused
+        onFocusChanged(isFocused)
     }
     val shape = RoundedCornerShape(10.dp)
     val borderColor = when {
@@ -98,5 +100,5 @@ fun SearchInputField(
 @Preview(showBackground = true)
 @Composable
 fun SearchInputFieldPreview() {
-    SearchInputField(value = "", onValueChange = {}, placeholder = "Placeholder")
+    SearchInputField(value = "", onValueChange = {}, placeholder = "Placeholder", onFocusChanged = {})
 }

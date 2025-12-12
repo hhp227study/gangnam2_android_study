@@ -19,7 +19,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 fun SearchRoot(
     viewModel: SearchViewModel = viewModel(
         factory = DependencyContainer.provideSearchViewModelFactory(LocalContext.current)
-    )
+    ),
+    onBackClick: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val sheetState = rememberModalBottomSheetState(
@@ -29,7 +30,8 @@ fun SearchRoot(
     SearchScreen(
         uiState,
         viewModel::onSearchKeywordChange,
-        viewModel::onFilterButtonClick
+        viewModel::onFilterButtonClick,
+        onBackClick
     )
     if (uiState.isShowBottomSheet) {
         ModalBottomSheet(

@@ -1,5 +1,6 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.search
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -26,7 +27,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 fun SearchScreen(
     uiState: SearchUiState,
     onSearchKeywordChange: (String) -> Unit,
-    onFilterButtonClick: (Boolean) -> Unit
+    onFilterButtonClick: (Boolean) -> Unit,
+    onBackClick: () -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize().navigationBarsPadding()) {
         AppBar(
@@ -35,7 +37,7 @@ fun SearchScreen(
                 Icon(
                     painter = painterResource(R.drawable.arrow_left),
                     contentDescription = "아이콘",
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(20.dp).clickable(onClick = onBackClick)
                 )
             }
         )
@@ -132,6 +134,7 @@ fun SearchScreenPreview() {
     SearchScreen(
         uiState = SearchUiState(),
         onSearchKeywordChange = {},
-        onFilterButtonClick = {}
+        onFilterButtonClick = {},
+        onBackClick = {}
     )
 }
