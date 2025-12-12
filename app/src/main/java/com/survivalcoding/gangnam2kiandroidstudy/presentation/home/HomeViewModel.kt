@@ -26,6 +26,7 @@ class HomeViewModel(
     }
 
     private suspend fun fetchFilteredRecipesByCategory(category: String) {
+        _uiState.update { state -> state.copy(isLoading = true) }
         recipeRepository.getFilteredRecipesByCategory(category)
             .onSuccess { recipes ->
                 _uiState.update { state ->
