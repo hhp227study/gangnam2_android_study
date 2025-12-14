@@ -36,7 +36,7 @@ fun SearchScreen(
             navigationIcon = {
                 Icon(
                     painter = painterResource(R.drawable.arrow_left),
-                    contentDescription = "아이콘",
+                    contentDescription = "뒤로가기",
                     modifier = Modifier.size(20.dp).clickable(onClick = onBackClick)
                 )
             }
