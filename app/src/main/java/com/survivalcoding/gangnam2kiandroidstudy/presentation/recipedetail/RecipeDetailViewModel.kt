@@ -3,10 +3,10 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.recipedetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.survivalcoding.gangnam2kiandroidstudy.data.repository.ChefRepository
-import com.survivalcoding.gangnam2kiandroidstudy.data.repository.IngredientRepository
-import com.survivalcoding.gangnam2kiandroidstudy.data.repository.ProcedureRepository
-import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepository
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.ChefRepository
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.IngredientRepository
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.ProcedureRepository
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

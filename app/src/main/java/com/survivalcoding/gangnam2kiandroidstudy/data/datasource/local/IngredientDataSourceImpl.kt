@@ -1,9 +1,11 @@
-package com.survivalcoding.gangnam2kiandroidstudy.data.datasource
+package com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local
 
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.IngredientEntity
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.IngredientsResponse
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredientEntity
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipesIngredientsResponse
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.AppAssetManager
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.IngredientDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.IngredientEntity
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.dto.IngredientsResponse
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredientEntity
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.dto.RecipesIngredientsResponse
 import kotlinx.serialization.json.Json
 
 class IngredientDataSourceImpl private constructor(
@@ -18,13 +20,13 @@ class IngredientDataSourceImpl private constructor(
     }
 
     override fun getRecipeIngredientsByRecipeId(recipeId: Int): List<RecipeIngredientEntity> {
-        val response = Json.decodeFromString<RecipesIngredientsResponse>(recipesIngredientsJsonString)
+        val response = Json.Default.decodeFromString<RecipesIngredientsResponse>(recipesIngredientsJsonString)
         return response.recipesIngredients
             .filter { it.recipeId == recipeId }
     }
 
     override fun getAllIngredients(): List<IngredientEntity> {
-        val response = Json.decodeFromString<IngredientsResponse>(ingredientsJsonString)
+        val response = Json.Default.decodeFromString<IngredientsResponse>(ingredientsJsonString)
         return response.ingredients
     }
 

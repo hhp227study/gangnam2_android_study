@@ -13,7 +13,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.unit.dp
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.survivalcoding.gangnam2kiandroidstudy.R
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredient
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredient
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

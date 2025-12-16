@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredient
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredient
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.IngredientCard
 
 @Composable

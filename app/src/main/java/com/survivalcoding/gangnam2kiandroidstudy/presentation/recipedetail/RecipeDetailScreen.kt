@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.survivalcoding.gangnam2kiandroidstudy.R
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Recipe
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredient
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredient
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.AppBar
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.LinearRecipeCard
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.TabLayout

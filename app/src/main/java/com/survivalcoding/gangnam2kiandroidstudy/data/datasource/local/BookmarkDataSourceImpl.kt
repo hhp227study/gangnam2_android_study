@@ -1,5 +1,6 @@
-package com.survivalcoding.gangnam2kiandroidstudy.data.datasource
+package com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local
 
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDataSource
 import java.util.Collections
 
 class BookmarkDataSourceImpl private constructor() : BookmarkDataSource {

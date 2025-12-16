@@ -1,7 +1,7 @@
 package com.survivalcoding.gangnam2kiandroidstudy.data
 
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Recipe
-import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepository
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.RecipeRepository
 
 class MockRecipesRepositoryFailure(
     private val errorMessage: String = "Failed to load recipes"

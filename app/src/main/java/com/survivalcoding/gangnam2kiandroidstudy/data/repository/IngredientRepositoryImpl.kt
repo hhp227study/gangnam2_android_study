@@ -2,7 +2,8 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.repository
 
 import com.survivalcoding.gangnam2kiandroidstudy.core.util.suspendRunCatching
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.IngredientDataSource
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredient
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredient
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.IngredientRepository
 
 class IngredientRepositoryImpl private constructor(
     private val ingredientDataSource: IngredientDataSource

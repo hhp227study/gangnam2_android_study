@@ -1,7 +1,9 @@
-package com.survivalcoding.gangnam2kiandroidstudy.data.datasource
+package com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local
 
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Chef
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.ProfilesResponse
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.AppAssetManager
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.ChefDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Chef
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.dto.ProfilesResponse
 import kotlinx.serialization.json.Json
 
 class ChefDataSourceImpl private constructor(
@@ -12,7 +14,7 @@ class ChefDataSourceImpl private constructor(
     }
 
     override suspend fun getAllChefs(): List<Chef> {
-        val response = Json.decodeFromString<ProfilesResponse>(chefsJsonString)
+        val response = Json.Default.decodeFromString<ProfilesResponse>(chefsJsonString)
         return response.profiles
     }
 

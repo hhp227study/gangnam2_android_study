@@ -2,7 +2,8 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.repository
 
 import com.survivalcoding.gangnam2kiandroidstudy.core.util.suspendRunCatching
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.ProcedureDataSource
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Procedure
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Procedure
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.ProcedureRepository
 
 class ProcedureRepositoryImpl private constructor(
     private val procedureDataSource: ProcedureDataSource

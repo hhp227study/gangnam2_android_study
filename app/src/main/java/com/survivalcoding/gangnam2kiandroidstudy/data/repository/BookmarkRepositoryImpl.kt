@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.repository
 
 import com.survivalcoding.gangnam2kiandroidstudy.core.util.suspendRunCatching
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.BookmarkRepository
 
 class BookmarkRepositoryImpl private constructor(
     private val bookmarkDataSource: BookmarkDataSource

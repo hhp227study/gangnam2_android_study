@@ -2,7 +2,8 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.repository
 
 import com.survivalcoding.gangnam2kiandroidstudy.core.util.suspendRunCatching
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.ChefDataSource
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Chef
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Chef
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.ChefRepository
 
 class ChefRepositoryImpl private constructor(
     private val chefDataSource: ChefDataSource

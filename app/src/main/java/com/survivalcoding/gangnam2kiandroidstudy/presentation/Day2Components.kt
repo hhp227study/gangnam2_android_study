@@ -16,8 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Recipe
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredient
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredient
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.BigButton
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.FilterButton
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.IngredientCard

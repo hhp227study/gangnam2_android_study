@@ -1,5 +1,10 @@
-package com.survivalcoding.gangnam2kiandroidstudy.data.model
+package com.survivalcoding.gangnam2kiandroidstudy.data.datasource.dto
 
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Chef
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.IngredientEntity
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Procedure
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredientEntity
 import kotlinx.serialization.Serializable
 
 @Serializable

@@ -1,9 +1,7 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes
 
-import androidx.lifecycle.viewModelScope
 import com.survivalcoding.gangnam2kiandroidstudy.data.MockRecipeDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.MockRecipesRepositoryFailure
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepositoryImpl
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
@@ -11,9 +9,7 @@ import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain

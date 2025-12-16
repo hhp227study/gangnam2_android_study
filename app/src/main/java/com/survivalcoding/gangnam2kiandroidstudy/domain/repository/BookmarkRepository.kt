@@ -1,4 +1,4 @@
-package com.survivalcoding.gangnam2kiandroidstudy.data.repository
+package com.survivalcoding.gangnam2kiandroidstudy.domain.repository
 
 interface BookmarkRepository {
     suspend fun getBookmarkedRecipeIds(): Result<List<Int>>

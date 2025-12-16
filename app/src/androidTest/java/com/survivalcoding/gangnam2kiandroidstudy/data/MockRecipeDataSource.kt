@@ -1,8 +1,8 @@
 package com.survivalcoding.gangnam2kiandroidstudy.data
 
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.RecipeDataSource
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Recipe
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipesResponse
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.dto.RecipesResponse
 import kotlinx.serialization.json.Json
 
 class MockRecipeDataSource(

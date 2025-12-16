@@ -1,9 +1,9 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.recipedetail
 
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Chef
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Procedure
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.Recipe
-import com.survivalcoding.gangnam2kiandroidstudy.data.model.RecipeIngredient
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Chef
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Procedure
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.RecipeIngredient
 
 data class RecipeDetailUiState(
     val isLoading: Boolean = false,
