@@ -17,12 +17,13 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes.Saved
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.search.SearchRoot
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.signin.SignInScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.signup.SignUpScreen
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.splash.SplashScreen
 
 @Composable
 fun NavigationRoot(
     modifier: Modifier = Modifier
 ) {
-    val topLevelBackStack = rememberNavBackStack(Route.SignIn)
+    val topLevelBackStack = rememberNavBackStack(Route.Splash)
 
     NavDisplay(
         modifier = modifier,
@@ -32,6 +33,12 @@ fun NavigationRoot(
         ),
         backStack = topLevelBackStack,
         entryProvider = entryProvider {
+            entry<Route.Splash> {
+                SplashScreen(onNavigate = {
+                    topLevelBackStack.clear()
+                    topLevelBackStack.add(Route.SignIn)
+                })
+            }
             entry<Route.SignIn> {
                 SignInScreen(
                     onSignInClick = {
