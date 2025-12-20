@@ -25,14 +25,13 @@ fun SearchRoot(
 
     SearchScreen(
         uiState,
-        viewModel::onSearchKeywordChange,
-        viewModel::onFilterButtonClick,
+        viewModel::onAction,
         onBackClick
     )
     if (uiState.isShowBottomSheet) {
         ModalBottomSheet(
             sheetState = sheetState,
-            onDismissRequest = { viewModel.onFilterButtonClick(false) },
+            onDismissRequest = { viewModel.onAction(SearchAction.FilterButtonClick(false)) },
             shape = RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp),
             containerColor = AppColors.white,
             dragHandle = null
@@ -42,9 +41,7 @@ fun SearchRoot(
                 onFilterClick = { time, rating, category ->
                     val filterResult = FilterSearchState(time, rating, category)
 
-                    viewModel.onFilterComplete(filterResult)
-                    // 필터 적용 처리
-                    viewModel.onFilterButtonClick(false)
+                    viewModel.onAction(SearchAction.FilterApply(filterResult))
                 }
             )
         }

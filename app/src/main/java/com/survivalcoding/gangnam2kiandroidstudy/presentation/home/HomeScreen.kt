@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.survivalcoding.gangnam2kiandroidstudy.R
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.HorizontalRecipeCard
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.NewRecipeCard
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.RecipeCategorySelector
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SearchInputField
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
@@ -26,8 +27,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 @Composable
 fun HomeScreen(
     uiState: HomeUiState,
-    onSearchKeywordChange: (String) -> Unit,
-    onSelectCategory: (String) -> Unit,
+    onAction: (HomeAction) -> Unit,
     onSearchKeywordFocusChanged: (Boolean) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize().navigationBarsPadding()) {
@@ -66,7 +66,7 @@ fun HomeScreen(
             SearchInputField(
                 value = uiState.searchKeyword,
                 modifier = Modifier.weight(1f),
-                onValueChange = onSearchKeywordChange,
+                onValueChange = { onAction.invoke(HomeAction.ChangeQuery(it)) },
                 placeholder = "Search recipe",
                 onFocusChanged = onSearchKeywordFocusChanged
             )
@@ -95,7 +95,7 @@ fun HomeScreen(
             modifier = Modifier.padding(top = 15.dp),
             contentPadding = PaddingValues(start = 30.dp),
             selectedCategory = uiState.selectedCategory,
-            onCategoryClick = onSelectCategory
+            onCategoryClick = { onAction.invoke(HomeAction.SelectCategory(it)) }
         )
         LazyRow(
             modifier = Modifier.padding(top = 15.dp),
@@ -106,6 +106,22 @@ fun HomeScreen(
                 HorizontalRecipeCard(recipe)
             }
         }
+        Text(
+            text = "New Recipes",
+            modifier = Modifier.padding(start = 30.dp, top = 20.dp),
+            style = AppTextStyles.normalTextRegular.copy(
+                fontWeight = FontWeight.SemiBold
+            )
+        )
+        LazyRow(
+            modifier = Modifier.padding(top = 5.dp),
+            contentPadding = PaddingValues(horizontal = 30.dp),
+            horizontalArrangement = Arrangement.spacedBy(15.dp)
+        ) {
+            items(uiState.recipes) { recipe ->
+                NewRecipeCard(recipe)
+            }
+        }
     }
 }
 
@@ -114,8 +130,7 @@ fun HomeScreen(
 fun HomeScreenPreview() {
     HomeScreen(
         uiState = HomeUiState(),
-        onSearchKeywordChange = {},
-        onSelectCategory = {},
+        onAction = {},
         onSearchKeywordFocusChanged = {}
     )
 }

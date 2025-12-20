@@ -26,8 +26,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 @Composable
 fun SearchScreen(
     uiState: SearchUiState,
-    onSearchKeywordChange: (String) -> Unit,
-    onFilterButtonClick: (Boolean) -> Unit,
+    onAction: (SearchAction) -> Unit,
     onBackClick: () -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize().navigationBarsPadding()) {
@@ -51,8 +50,8 @@ fun SearchScreen(
                 item(span = { GridItemSpan(2) }) {
                     GridHeader(
                         searchKeyword = uiState.searchKeyword,
-                        onSearchKeywordChange = onSearchKeywordChange,
-                        onFilterButtonClick = { onFilterButtonClick(true) },
+                        onSearchKeywordChange = { onAction.invoke(SearchAction.SearchKeywordChange(it)) },
+                        onFilterButtonClick = { onAction.invoke(SearchAction.FilterButtonClick(true)) },
                         filteredRecipesSize = uiState.filteredRecipes.size
                     )
                 }
@@ -133,8 +132,7 @@ fun GridHeader(
 fun SearchScreenPreview() {
     SearchScreen(
         uiState = SearchUiState(),
-        onSearchKeywordChange = {},
-        onFilterButtonClick = {},
+        onAction = {},
         onBackClick = {}
     )
 }

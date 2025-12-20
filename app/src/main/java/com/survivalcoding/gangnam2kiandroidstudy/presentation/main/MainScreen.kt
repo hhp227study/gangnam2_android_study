@@ -28,7 +28,7 @@ fun MainScreen(
             .fillMaxSize()
             .navigationBarsPadding()
     ) {
-        Column(modifier.padding(bottom = 34.dp)) {
+        Column(modifier.padding(bottom = 32.dp)) {
             body(Modifier.background(AppColors.primary100).padding(bottom = 100.dp))
         }
         MainNavigationBar(

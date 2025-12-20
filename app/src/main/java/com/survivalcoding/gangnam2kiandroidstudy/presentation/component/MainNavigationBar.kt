@@ -62,18 +62,18 @@ fun MainNavigationBar(
         ) {
             val width = size.width
             val height = size.height
-            val fabRadius = 24.dp.toPx()
+            val fabRadius = 25.dp.toPx()
             val path = Path().apply {
                 moveTo(0f, 0f)
                 lineTo(width * 0.37f, 0f)
                 cubicTo(
-                    width * 0.40f, 0f,
+                    width * 0.41f, 0f,
                     width * 0.43f, fabRadius * 1.6f,
                     width * 0.50f, fabRadius * 1.6f
                 )
                 cubicTo(
                     width * 0.57f, fabRadius * 1.6f,
-                    width * 0.60f, 0f,
+                    width * 0.59f, 0f,
                     width * 0.64f, 0f
                 )
                 lineTo(width, 0f)

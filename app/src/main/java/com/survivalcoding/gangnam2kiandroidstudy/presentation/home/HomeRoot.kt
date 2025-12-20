@@ -16,8 +16,7 @@ fun HomeRoot(
 
     HomeScreen(
         uiState = uiState,
-        onSearchKeywordChange = viewModel::onSearchKeywordChange,
-        onSelectCategory = viewModel::onSelectCategory,
+        onAction = viewModel::onAction,
         onSearchKeywordFocusChanged = {
             keyboardController?.hide()
             onSearchKeywordFocusChanged(it)

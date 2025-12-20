@@ -42,12 +42,19 @@ class HomeViewModel(
             }
     }
 
-    fun onSelectCategory(value: String) {
+    private fun onSelectCategory(value: String) {
         _uiState.update { it.copy(selectedCategory = value) }
     }
 
-    fun onSearchKeywordChange(value: String) {
+    private fun onSearchKeywordChange(value: String) {
         _uiState.update { it.copy(searchKeyword = value) }
+    }
+
+    fun onAction(action: HomeAction) {
+        when (action) {
+            is HomeAction.ChangeQuery -> onSearchKeywordChange(action.query)
+            is HomeAction.SelectCategory -> onSelectCategory(action.category)
+        }
     }
 
     init {

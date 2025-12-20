@@ -74,16 +74,24 @@ class SearchViewModel(
         }
     }
 
-    fun onSearchKeywordChange(value: String) {
+    private fun onSearchKeywordChange(value: String) {
         _uiState.update { it.copy(searchKeyword = value) }
     }
 
-    fun onFilterButtonClick(value: Boolean) {
+    private fun onFilterButtonClick(value: Boolean) {
         _uiState.update { it.copy(isShowBottomSheet = value) }
     }
 
-    fun onFilterComplete(value: FilterSearchState) {
-        _uiState.update { it.copy(filterSearchState = value) }
+    private fun onFilterComplete(value: FilterSearchState) {
+        _uiState.update { it.copy(filterSearchState = value, isShowBottomSheet = false) }
+    }
+
+    fun onAction(action: SearchAction) {
+        when (action) {
+            is SearchAction.FilterApply -> onFilterComplete(action.filterSearchState)
+            is SearchAction.FilterButtonClick -> onFilterButtonClick(action.isClick)
+            is SearchAction.SearchKeywordChange -> onSearchKeywordChange(action.keyword)
+        }
     }
 
     init {

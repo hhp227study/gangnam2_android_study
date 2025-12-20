@@ -27,8 +27,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 @Composable
 fun RecipeDetailScreen(
     recipeDetailUiState: RecipeDetailUiState,
-    onTabClick: (Int) -> Unit,
-    onFollowClick: () -> Unit,
+    onAction: (RecipeDetailAction) -> Unit,
     onNavigateUp: () -> Unit
 ) {
     val tabs = listOf(
@@ -119,7 +118,7 @@ fun RecipeDetailScreen(
             }
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                onClick = onFollowClick,
+                onClick = { onAction.invoke(RecipeDetailAction.FollowClick(0)) },
                 modifier = Modifier.size(width = 85.dp, height = 37.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonColors(
@@ -154,7 +153,7 @@ fun RecipeDetailScreen(
             tabs = tabs.map { it.first },
             modifier = Modifier.padding(horizontal = 30.dp).padding(top = 12.dp, bottom = 13.dp),
             currentSelectTabPosition = recipeDetailUiState.selectedTabPosition,
-            onTabClick = onTabClick
+            onTabClick = { onAction.invoke(RecipeDetailAction.TabClick(it)) }
         )
         Row(
             modifier = Modifier.padding(top = 22.dp, bottom = 20.dp).height(24.dp).fillMaxWidth().padding(horizontal = 30.dp),
@@ -206,8 +205,7 @@ fun RecipeDetailScreenPreview() {
             ),
             procedures = emptyList(),
         ),
-        onTabClick = fun (_) = Unit,
-        onFollowClick = fun() = Unit,
+        onAction = fun (_) = Unit,
         onNavigateUp = fun() = Unit
     )
 }

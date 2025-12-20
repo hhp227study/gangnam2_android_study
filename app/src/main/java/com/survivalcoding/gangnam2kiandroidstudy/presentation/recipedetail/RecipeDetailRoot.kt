@@ -13,8 +13,7 @@ fun RecipeDetailRoot(
 
     RecipeDetailScreen(
         recipeDetailUiState = uiState,
-        onTabClick = viewModel::onTabClick,
-        onFollowClick = {},
+        onAction = viewModel::onAction,
         onNavigateUp = onNavigateUp
     )
 }

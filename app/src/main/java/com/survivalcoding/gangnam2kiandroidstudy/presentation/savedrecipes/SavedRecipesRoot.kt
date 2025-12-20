@@ -12,5 +12,5 @@ fun SavedRecipesRoot(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    SavedRecipesScreen(uiState, onRecipeClick, viewModel::removeBookmark)
+    SavedRecipesScreen(uiState, onRecipeClick, viewModel::onAction)
 }

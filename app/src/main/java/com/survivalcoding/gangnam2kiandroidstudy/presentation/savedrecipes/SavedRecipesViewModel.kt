@@ -39,7 +39,7 @@ class SavedRecipesViewModel(
         }
     }
 
-    fun removeBookmark(id: Int) {
+    private fun removeBookmark(id: Int) {
         viewModelScope.launch {
             removeBookmarkUseCase(id)
                 .onSuccess { success ->
@@ -60,6 +60,12 @@ class SavedRecipesViewModel(
                         )
                     }
                 }
+        }
+    }
+
+    fun onAction(action: SavedRecipesAction) {
+        when (action) {
+            is SavedRecipesAction.RemoveBookmark -> removeBookmark(action.id)
         }
     }
 

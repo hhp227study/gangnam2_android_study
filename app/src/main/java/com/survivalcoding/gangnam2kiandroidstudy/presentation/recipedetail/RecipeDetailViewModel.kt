@@ -39,8 +39,15 @@ class RecipeDetailViewModel(
         }
     }
 
-    fun onTabClick(value: Int) {
+    private fun onTabClick(value: Int) {
         _uiState.update { it.copy(selectedTabPosition = value) }
+    }
+
+    fun onAction(action: RecipeDetailAction) {
+        when (action) {
+            is RecipeDetailAction.TabClick -> onTabClick(action.position)
+            is RecipeDetailAction.FollowClick -> TODO()
+        }
     }
 
     init {
