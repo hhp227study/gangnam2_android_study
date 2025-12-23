@@ -25,6 +25,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 fun MediumButton(
     text: String,
     modifier: Modifier = Modifier,
+    enabled: Boolean,
     onClick: () -> Unit = {},
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -33,6 +34,7 @@ fun MediumButton(
     Button(
         onClick = onClick,
         modifier = modifier.size(width = 243.dp, height = 54.dp),
+        enabled = enabled,
         shape = RoundedCornerShape(10.dp),
         colors = ButtonColors(
             containerColor = if (isPressed) AppColors.gray4 else AppColors.primary100,
@@ -70,5 +72,5 @@ fun MediumButton(
 @Preview(showBackground = true)
 @Composable
 fun MediumButtonPreview() {
-    MediumButton("Start Cooking")
+    MediumButton("Start Cooking", enabled = true)
 }

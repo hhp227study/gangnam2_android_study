@@ -27,8 +27,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 @Composable
 fun RecipeDetailScreen(
     recipeDetailUiState: RecipeDetailUiState,
-    onAction: (RecipeDetailAction) -> Unit,
-    onNavigateUp: () -> Unit
+    onAction: (RecipeDetailAction) -> Unit
 ) {
     val tabs = listOf(
         "Ingredient" to @Composable { IngredientScreen(recipeDetailUiState.ingredients) },
@@ -39,7 +38,7 @@ fun RecipeDetailScreen(
         AppBar(
             title = "",
             navigationIcon = {
-                IconButton(onClick = onNavigateUp) {
+                IconButton(onClick = { onAction(RecipeDetailAction.BackClick) }) {
                     Icon(painter = painterResource(R.drawable.arrow_left), contentDescription = null)
                 }
             },
@@ -205,7 +204,6 @@ fun RecipeDetailScreenPreview() {
             ),
             procedures = emptyList(),
         ),
-        onAction = fun (_) = Unit,
-        onNavigateUp = fun() = Unit
+        onAction = fun (_) = Unit
     )
 }

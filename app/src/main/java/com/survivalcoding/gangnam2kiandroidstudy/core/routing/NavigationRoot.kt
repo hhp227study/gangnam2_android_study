@@ -1,10 +1,8 @@
 package com.survivalcoding.gangnam2kiandroidstudy.core.routing
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -18,7 +16,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes.Saved
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.search.SearchRoot
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.signin.SignInScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.signup.SignUpScreen
-import com.survivalcoding.gangnam2kiandroidstudy.presentation.splash.SplashScreen
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.splash.SplashRoot
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -38,10 +36,12 @@ fun NavigationRoot(
         backStack = topLevelBackStack,
         entryProvider = entryProvider {
             entry<Route.Splash> {
-                SplashScreen(onNavigate = {
-                    topLevelBackStack.clear()
-                    topLevelBackStack.add(Route.SignIn)
-                })
+                SplashRoot(
+                    onNavigate = {
+                        topLevelBackStack.clear()
+                        topLevelBackStack.add(Route.SignIn)
+                    }
+                )
             }
             entry<Route.SignIn> {
                 SignInScreen(

@@ -5,6 +5,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.home.HomeViewModel
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.recipedetail.RecipeDetailViewModel
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes.SavedRecipesViewModel
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.search.SearchViewModel
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -34,5 +35,8 @@ val viewModelModule = module {
             getRecipeDetailsUseCase = get(),
             savedStateHandle = savedStateHandle
         )
+    }
+    viewModel {
+        SplashViewModel(observeNetworkStatusUseCase = get())
     }
 }

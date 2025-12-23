@@ -26,8 +26,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 @Composable
 fun SearchScreen(
     uiState: SearchUiState,
-    onAction: (SearchAction) -> Unit,
-    onBackClick: () -> Unit
+    onAction: (SearchAction) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize().navigationBarsPadding()) {
         AppBar(
@@ -36,7 +35,7 @@ fun SearchScreen(
                 Icon(
                     painter = painterResource(R.drawable.arrow_left),
                     contentDescription = "뒤로가기",
-                    modifier = Modifier.size(20.dp).clickable(onClick = onBackClick)
+                    modifier = Modifier.size(20.dp).clickable { onAction(SearchAction.BackClick) }
                 )
             }
         )
@@ -50,8 +49,12 @@ fun SearchScreen(
                 item(span = { GridItemSpan(2) }) {
                     GridHeader(
                         searchKeyword = uiState.searchKeyword,
-                        onSearchKeywordChange = { onAction.invoke(SearchAction.SearchKeywordChange(it)) },
-                        onFilterButtonClick = { onAction.invoke(SearchAction.FilterButtonClick(true)) },
+                        onSearchKeywordChange = {
+                            onAction(SearchAction.SearchKeywordChange(it))
+                        },
+                        onFilterButtonClick = {
+                            onAction(SearchAction.FilterButtonClick)
+                        },
                         filteredRecipesSize = uiState.filteredRecipes.size
                     )
                 }
@@ -132,7 +135,6 @@ fun GridHeader(
 fun SearchScreenPreview() {
     SearchScreen(
         uiState = SearchUiState(),
-        onAction = {},
-        onBackClick = {}
+        onAction = {}
     )
 }

@@ -44,9 +44,6 @@ fun SavedRecipesScreen(
                 uiState.isLoading -> {
                     CircularProgressIndicator()
                 }
-                uiState.message?.isNotEmpty() == true -> {
-                    Text("데이터가 없습니다.")
-                }
             }
         }
     }

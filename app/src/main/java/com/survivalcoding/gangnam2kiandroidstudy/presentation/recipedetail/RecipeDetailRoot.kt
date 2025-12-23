@@ -11,9 +11,21 @@ fun RecipeDetailRoot(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    LaunchedEffect(Unit) {
+        viewModel.event.collect { event ->
+            when (event) {
+                RecipeDetailEvent.NavigateUp -> onNavigateUp()
+                is RecipeDetailEvent.ShowMessage -> {
+                    // Snackbar / Toast
+                }
+                is RecipeDetailEvent.FollowCompleted -> {
+                    // Snackbar("Followed!")
+                }
+            }
+        }
+    }
     RecipeDetailScreen(
         recipeDetailUiState = uiState,
-        onAction = viewModel::onAction,
-        onNavigateUp = onNavigateUp
+        onAction = viewModel::onAction
     )
 }

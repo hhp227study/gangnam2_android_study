@@ -9,6 +9,9 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val getFilteredRecipesUseCase: GetFilteredRecipesUseCase
 ) : ViewModel() {
+    private val _event = MutableSharedFlow<HomeEvent>()
+    val event = _event.asSharedFlow()
+
     private val _uiState = MutableStateFlow(HomeUiState(isLoading = true))
     val uiState = _uiState.asStateFlow()
 
@@ -52,8 +55,17 @@ class HomeViewModel(
 
     fun onAction(action: HomeAction) {
         when (action) {
-            is HomeAction.ChangeQuery -> onSearchKeywordChange(action.query)
-            is HomeAction.SelectCategory -> onSelectCategory(action.category)
+            is HomeAction.ChangeQuery -> {
+                _uiState.update { it.copy(searchKeyword = action.query) }
+            }
+            is HomeAction.SelectCategory -> {
+                _uiState.update { it.copy(selectedCategory = action.category) }
+            }
+            is HomeAction.SearchFocusChanged -> {
+                viewModelScope.launch {
+                    _event.emit(HomeEvent.SearchFocusChanged(action.focused))
+                }
+            }
         }
     }
 

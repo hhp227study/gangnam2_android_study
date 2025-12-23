@@ -30,4 +30,9 @@ val useCaseModule = module {
             procedureRepository = get()
         )
     }
+    factory {
+        ObserveNetworkStatusUseCase(
+            networkRepository = get()
+        )
+    }
 }

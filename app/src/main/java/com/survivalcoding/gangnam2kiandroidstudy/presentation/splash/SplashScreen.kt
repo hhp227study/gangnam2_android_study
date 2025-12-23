@@ -22,7 +22,10 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
-fun SplashScreen(onNavigate: () -> Unit) {
+fun SplashScreen(
+    isStartEnabled: Boolean,
+    onNavigate: () -> Unit
+) {
     Box(
         modifier = Modifier.fillMaxSize().navigationBarsPadding(),
         contentAlignment = Alignment.Center
@@ -83,7 +86,7 @@ fun SplashScreen(onNavigate: () -> Unit) {
                 )
             }
             Spacer(modifier = Modifier.weight(64f))
-            MediumButton("Start Cooking", onClick = onNavigate)
+            MediumButton("Start Cooking", enabled = isStartEnabled, onClick = onNavigate)
             Spacer(modifier = Modifier.weight(84f))
         }
     }
@@ -92,5 +95,8 @@ fun SplashScreen(onNavigate: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SplashScreen(onNavigate = fun() = Unit)
+    SplashScreen(
+        isStartEnabled = true,
+        onNavigate = fun() = Unit
+    )
 }

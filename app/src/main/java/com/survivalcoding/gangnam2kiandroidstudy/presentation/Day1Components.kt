@@ -42,7 +42,7 @@ fun Day1Components() {
                 }
             )
             Spacer(modifier = Modifier.height(36.dp))
-            MediumButton(text = "Button")
+            MediumButton(text = "Button", enabled = true)
             Spacer(modifier = Modifier.height(36.dp))
             SmallButton(text = "Button")
             Spacer(modifier = Modifier.height(36.dp))

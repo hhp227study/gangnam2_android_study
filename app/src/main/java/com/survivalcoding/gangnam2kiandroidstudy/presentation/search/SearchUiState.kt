@@ -5,9 +5,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
 data class SearchUiState(
     val searchKeyword: String = "",
     val isLoading: Boolean = false,
-    val isShowBottomSheet: Boolean = false,
     val allRecipes: List<Recipe> = emptyList(),
     val filteredRecipes: List<Recipe> = emptyList(),
-    val filterSearchState: FilterSearchState = FilterSearchState(),
-    val message: String? = null
+    val filterSearchState: FilterSearchState = FilterSearchState()
 )
