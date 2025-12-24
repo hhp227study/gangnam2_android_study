@@ -1,8 +1,9 @@
-package com.survivalcoding.gangnam2kiandroidstudy.data
+package com.survivalcoding.gangnam2kiandroidstudy.data.datasource
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.survivalcoding.gangnam2kiandroidstudy.data.MockAssetManager
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.RecipeDataSourceImpl
-import org.junit.Assert.assertEquals
+import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -53,13 +54,13 @@ class RecipeDataSourceTest {
 
     private val mockAssetManager = MockAssetManager(fakeJson)
 
-    private val dataSource = RecipeDataSourceImpl.getInstance(mockAssetManager)
+    private val dataSource = RecipeDataSourceImpl(mockAssetManager)
 
     @Test
     fun `테스트`() {
         val albumList = dataSource.getRecipes()
         val expected = 4
 
-        assertEquals(expected, albumList.size)
+        Assert.assertEquals(expected, albumList.size)
     }
 }

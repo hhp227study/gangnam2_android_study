@@ -1,7 +1,7 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes
 
-import com.survivalcoding.gangnam2kiandroidstudy.data.MockRecipeDataSource
-import com.survivalcoding.gangnam2kiandroidstudy.data.MockRecipesRepositoryFailure
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.MockRecipeDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.data.repository.MockRecipesRepositoryFailure
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepositoryImpl
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse

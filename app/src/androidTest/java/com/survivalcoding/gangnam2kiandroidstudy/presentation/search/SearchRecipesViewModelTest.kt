@@ -1,6 +1,6 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.search
 
-import com.survivalcoding.gangnam2kiandroidstudy.data.MockRecipeDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.MockRecipeDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepositoryImpl
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +66,7 @@ class SearchRecipesViewModelTest {
     fun `fetchAllRecipes_성공_시_UI_State_업데이트`() = runTest {
         // Given
         val dataSource = MockRecipeDataSource(fakeJson)
-        val repository = RecipeRepositoryImpl.getInstance(dataSource)
+        val repository = RecipeRepositoryImpl(dataSource)
         val viewModel = SearchViewModel(repository)
 
         // 초기 fetchAllRecipes, fetchFilteredRecipes 안정화
@@ -84,7 +84,7 @@ class SearchRecipesViewModelTest {
     @Test
     fun `keyword_입력_시_debounce_500ms_후_filteredRecipes_업데이트`() = runTest {
         val dataSource = MockRecipeDataSource(fakeJson)
-        val repository = RecipeRepositoryImpl.getInstance(dataSource)
+        val repository = RecipeRepositoryImpl(dataSource)
 
         val viewModel = SearchViewModel(repository)
         advanceUntilIdle()
