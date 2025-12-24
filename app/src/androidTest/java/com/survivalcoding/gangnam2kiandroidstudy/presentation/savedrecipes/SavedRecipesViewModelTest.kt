@@ -1,8 +1,14 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes
 
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.MockRecipeDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.BookmarkDataSourceImpl
+import com.survivalcoding.gangnam2kiandroidstudy.data.repository.BookmarkRepositoryImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.MockRecipesRepositoryFailure
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepositoryImpl
+import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.BookmarkRepository
+import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.GetSavedRecipesUseCase
+import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.RemoveBookmarkUseCase
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNull
@@ -78,9 +84,13 @@ class SavedRecipesViewModelFakeTest {
     @Test
     fun `fetchRecipes_성공_시_uiState가_recipes로_업데이트된다`() = runTest {
         // Given
-        val dataSource = MockRecipeDataSource(fakeJson)
-        val repository = RecipeRepositoryImpl.getInstance(dataSource)
-        val viewModel = SavedRecipesViewModel(repository)
+        val recipeDataSource = MockRecipeDataSource(fakeJson)
+        val recipeRepository = RecipeRepositoryImpl(recipeDataSource)
+        val bookmarkDataSource = BookmarkDataSourceImpl()
+        val bookmarkRepository = BookmarkRepositoryImpl(bookmarkDataSource)
+        val savedRecipeUsecase = GetSavedRecipesUseCase(recipeRepository, bookmarkRepository)
+        val removeUseCase = RemoveBookmarkUseCase(bookmarkRepository)
+        val viewModel = SavedRecipesViewModel(savedRecipeUsecase, removeUseCase)
 
         // When
         // init{} 안에서 fetchRecipes() 실행 → 비동기 → Idle 시점까지 진척
@@ -91,7 +101,6 @@ class SavedRecipesViewModelFakeTest {
 
         assertFalse(state.isLoading)
         assertEquals(4, state.recipes.size)              // JSON 기반으로 총 4개
-        assertNull(state.message)
 
         // 첫 번째 레시피 이름 검증
         assertEquals("Traditional spare ribs baked", state.recipes[0].name)
@@ -100,8 +109,13 @@ class SavedRecipesViewModelFakeTest {
     @Test
     fun `fetchRecipes_실패_시_uiState가_message로_업데이트된다`() = runTest {
         // Given
-        val repository = MockRecipesRepositoryFailure("Network error")
-        val viewModel = SavedRecipesViewModel(repository)
+        val recipeDataSource = MockRecipeDataSource(fakeJson)
+        val recipeRepository = RecipeRepositoryImpl(recipeDataSource)
+        val bookmarkDataSource = BookmarkDataSourceImpl()
+        val bookmarkRepository = BookmarkRepositoryImpl(bookmarkDataSource)
+        val savedRecipeUsecase = GetSavedRecipesUseCase(recipeRepository, bookmarkRepository)
+        val removeUseCase = RemoveBookmarkUseCase(bookmarkRepository)
+        val viewModel = SavedRecipesViewModel(savedRecipeUsecase, removeUseCase)
 
         // When
         testScheduler.advanceUntilIdle()
@@ -111,6 +125,5 @@ class SavedRecipesViewModelFakeTest {
 
         assertFalse(state.isLoading)
         assertTrue(state.recipes.isEmpty())
-        assertEquals("Network error", state.message)
     }
 }

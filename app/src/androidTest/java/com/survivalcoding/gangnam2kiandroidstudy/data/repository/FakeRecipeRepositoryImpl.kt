@@ -24,7 +24,6 @@ class FakeRecipeRepositoryImpl : RecipeRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getRecipeById(id: Int): Recipe? {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getRecipeById(id: Int): Recipe? =
+        fakeRecipes.find { it.id == id }
 }

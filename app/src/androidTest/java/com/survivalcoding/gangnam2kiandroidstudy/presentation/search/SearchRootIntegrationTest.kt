@@ -6,7 +6,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
-import com.survivalcoding.gangnam2kiandroidstudy.core.di.testSearchModule
+import com.survivalcoding.gangnam2kiandroidstudy.core.di.testModule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -37,11 +37,12 @@ class SearchRootIntegrationTest : KoinTest {
         stopKoin()
 
         startKoin {
-            modules(testSearchModule)
+            modules(testModule)
         }
 
         composeRule.setContent {
             SearchRoot(
+                onRecipeClick = {},
                 onBackClick = {}
             )
         }
