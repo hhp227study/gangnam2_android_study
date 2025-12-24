@@ -4,16 +4,21 @@ import com.survivalcoding.gangnam2kiandroidstudy.core.util.suspendRunCatching
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.BookmarkRepository
 import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.RecipeRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class GetSavedRecipesUseCase(
     private val recipeRepository: RecipeRepository,
     private val bookmarkRepository: BookmarkRepository
 ) {
-    suspend operator fun invoke(): Result<List<Recipe>> {
-        return suspendRunCatching {
-            val bookmarkIds = bookmarkRepository.getBookmarkedRecipeIds()
-            val allRecipes = recipeRepository.getAllRecipes()
-            allRecipes.filter { it.id in bookmarkIds }
-        }
+    operator fun invoke(): Flow<Result<List<Recipe>>> {
+        return bookmarkRepository.getBookmarkedRecipeIds()
+            .map { bookmarkIds ->
+                suspendRunCatching {
+                    recipeRepository.getAllRecipes()
+                        .filter { it.id in bookmarkIds }
+                        .map { it.copy(isBookmarked = true) }
+                }
+            }
     }
 }

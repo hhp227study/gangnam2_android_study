@@ -1,6 +1,9 @@
 package com.survivalcoding.gangnam2kiandroidstudy.domain.repository
 
+import kotlinx.coroutines.flow.Flow
+
 interface BookmarkRepository {
-    suspend fun getBookmarkedRecipeIds(): List<Int>
-    suspend fun removeBookmark(recipeId: Int): Boolean
+    fun getBookmarkedRecipeIds(): Flow<List<Int>>
+
+    suspend fun toggleBookmark(recipeId: Int, isBookmarked: Boolean): Boolean
 }

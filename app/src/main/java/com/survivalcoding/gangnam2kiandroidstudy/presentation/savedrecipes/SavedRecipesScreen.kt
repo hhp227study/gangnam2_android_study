@@ -4,9 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,7 +38,7 @@ fun SavedRecipesScreen(
                             LinearRecipeCard(
                                 recipe,
                                 onClick = { onItemClick(recipe.id) },
-                                onBookmarkClick = { onAction(SavedRecipesAction.RemoveBookmark(recipe.id)) }
+                                onBookmarkClick = { onAction(SavedRecipesAction.ToggleBookmark(recipe)) }
                             )
                         }
                     }

@@ -135,7 +135,7 @@ fun LinearRecipeCard(
                 painter = painterResource(R.drawable.bookmark),
                 contentDescription = null,
                 modifier = Modifier.align(Alignment.Center),
-                tint = AppColors.primary100
+                tint = if (recipe.isBookmarked) AppColors.primary100 else AppColors.gray3
             )
         }
     }

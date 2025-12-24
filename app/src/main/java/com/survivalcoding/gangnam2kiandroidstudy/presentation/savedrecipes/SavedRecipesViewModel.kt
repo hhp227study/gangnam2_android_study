@@ -2,19 +2,21 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.GetSavedRecipesUseCase
-import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.RemoveBookmarkUseCase
+import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.ToggleBookmarkUseCase
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes.SavedRecipesEvent.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SavedRecipesViewModel(
     private val getSavedRecipesUseCase: GetSavedRecipesUseCase,
-    private val removeBookmarkUseCase: RemoveBookmarkUseCase
+    private val toggleBookmarkUseCase: ToggleBookmarkUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(SavedRecipesUiState())
     val uiState = _uiState.asStateFlow()
@@ -26,34 +28,37 @@ class SavedRecipesViewModel(
         _uiState.update { state -> state.copy(isLoading = true) }
         viewModelScope.launch {
             getSavedRecipesUseCase()
-                .onSuccess { recipes ->
-                    _uiState.update { state ->
-                        state.copy(
-                            isLoading = false,
-                            recipes = recipes
-                        )
-                    }
-                }
-                .onFailure {
-                    _uiState.update { state -> state.copy(isLoading = false) }
-                    emitEvent(
-                        SavedRecipesEvent.ShowMessage(
-                            it.message ?: "Failed to load saved recipes"
-                        )
-                    )
+                .collectLatest { result ->
+                    result
+                        .onSuccess { recipes ->
+                            _uiState.update { state ->
+                                state.copy(
+                                    isLoading = false,
+                                    recipes = recipes
+                                )
+                            }
+                        }
+                        .onFailure {
+                            _uiState.update { state -> state.copy(isLoading = false) }
+                            emitEvent(
+                                SavedRecipesEvent.ShowMessage(
+                                    it.message ?: "Failed to load saved recipes"
+                                )
+                            )
+                        }
                 }
         }
     }
 
-    private fun removeBookmark(id: Int) {
+    private fun removeBookmark(recipe: Recipe) {
         viewModelScope.launch {
-            removeBookmarkUseCase(id)
+            toggleBookmarkUseCase(recipe)
                 .onSuccess { success ->
                     if (success) {
                         _uiState.update { state ->
                             state.copy(
                                 isLoading = false,
-                                recipes = state.recipes.filter { it.id != id }
+                                recipes = state.recipes.filter { it.id != recipe.id }
                             )
                         }
                     }
@@ -74,7 +79,7 @@ class SavedRecipesViewModel(
 
     fun onAction(action: SavedRecipesAction) {
         when (action) {
-            is SavedRecipesAction.RemoveBookmark -> removeBookmark(action.id)
+            is SavedRecipesAction.ToggleBookmark -> removeBookmark(action.recipe)
             is SavedRecipesAction.RecipeClick -> {
                 emitEvent(NavigateToRecipe(action.id))
             }

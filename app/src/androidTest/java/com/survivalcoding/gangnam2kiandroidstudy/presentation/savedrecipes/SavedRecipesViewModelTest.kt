@@ -1,17 +1,13 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.savedrecipes
 
-import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.MockRecipeDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.BookmarkDataSourceImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.BookmarkRepositoryImpl
-import com.survivalcoding.gangnam2kiandroidstudy.data.repository.MockRecipesRepositoryFailure
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepositoryImpl
-import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.BookmarkRepository
 import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.GetSavedRecipesUseCase
-import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.RemoveBookmarkUseCase
+import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.ToggleBookmarkUseCase
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
-import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -89,7 +85,7 @@ class SavedRecipesViewModelFakeTest {
         val bookmarkDataSource = BookmarkDataSourceImpl()
         val bookmarkRepository = BookmarkRepositoryImpl(bookmarkDataSource)
         val savedRecipeUsecase = GetSavedRecipesUseCase(recipeRepository, bookmarkRepository)
-        val removeUseCase = RemoveBookmarkUseCase(bookmarkRepository)
+        val removeUseCase = ToggleBookmarkUseCase(bookmarkRepository)
         val viewModel = SavedRecipesViewModel(savedRecipeUsecase, removeUseCase)
 
         // When
@@ -114,7 +110,7 @@ class SavedRecipesViewModelFakeTest {
         val bookmarkDataSource = BookmarkDataSourceImpl()
         val bookmarkRepository = BookmarkRepositoryImpl(bookmarkDataSource)
         val savedRecipeUsecase = GetSavedRecipesUseCase(recipeRepository, bookmarkRepository)
-        val removeUseCase = RemoveBookmarkUseCase(bookmarkRepository)
+        val removeUseCase = ToggleBookmarkUseCase(bookmarkRepository)
         val viewModel = SavedRecipesViewModel(savedRecipeUsecase, removeUseCase)
 
         // When

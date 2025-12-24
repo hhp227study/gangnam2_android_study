@@ -12,7 +12,8 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel {
         HomeViewModel(
-            getFilteredRecipesUseCase = get()
+            getFilteredRecipesUseCase = get(),
+            toggleBookmarkUseCase = get()
         )
     }
     viewModel {
@@ -24,7 +25,7 @@ val viewModelModule = module {
     viewModel {
         SavedRecipesViewModel(
             getSavedRecipesUseCase = get(),
-            removeBookmarkUseCase = get()
+            toggleBookmarkUseCase = get()
         )
     }
     viewModel { (recipeId: Int) ->

@@ -104,7 +104,7 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(15.dp)
         ) {
             items(uiState.recipes) { recipe ->
-                HorizontalRecipeCard(recipe)
+                HorizontalRecipeCard(recipe, onBookmarkClick = { onAction(HomeAction.BookmarkClick(recipe)) })
             }
         }
         Text(

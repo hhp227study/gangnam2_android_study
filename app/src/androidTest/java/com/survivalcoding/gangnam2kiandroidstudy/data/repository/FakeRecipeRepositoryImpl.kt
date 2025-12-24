@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.repository
 
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.RecipeRepository
+import kotlinx.coroutines.flow.Flow
 
 class FakeRecipeRepositoryImpl : RecipeRepository {
     private val fakeRecipes = listOf(
@@ -20,7 +21,7 @@ class FakeRecipeRepositoryImpl : RecipeRepository {
         }
     }
 
-    override suspend fun getFilteredRecipesByCategory(category: String): List<Recipe> {
+    override fun getFilteredRecipesByCategoryFlow(category: String): Flow<List<Recipe>> {
         TODO("Not yet implemented")
     }
 

@@ -10,5 +10,6 @@ data class Recipe(
     val image: String = "",
     val chef: String = "",
     val time: String = "",
-    val rating: Double = 0.0
+    val rating: Double = 0.0,
+    val isBookmarked: Boolean = false
 )

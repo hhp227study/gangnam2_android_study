@@ -8,7 +8,7 @@ val useCaseModule = module {
         GetAllRecipesUseCase(get())
     }
     factory {
-        GetFilteredRecipesUseCase(get())
+        GetFilteredRecipesUseCase(get(), get())
     }
     factory {
         SearchRecipeByKeywordUseCase(get())
@@ -20,7 +20,7 @@ val useCaseModule = module {
         )
     }
     factory {
-        RemoveBookmarkUseCase(get())
+        ToggleBookmarkUseCase(get())
     }
     factory {
         GetRecipeDetailsUseCase(

@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,6 +29,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 fun HorizontalRecipeCard(
     recipe: Recipe,
     modifier: Modifier = Modifier,
+    onBookmarkClick: () -> Unit,
     imageLoader: @Composable BoxScope.(Modifier) -> Unit = { modifier ->
         AsyncImage(
             model = recipe.image,
@@ -79,12 +81,13 @@ fun HorizontalRecipeCard(
                     .size(24.dp)
                     .background(color = AppColors.white, shape = CircleShape)
                     .align(Alignment.BottomEnd)
+                    .clickable(onClick = onBookmarkClick)
             ) {
                 Icon(
                     painter = painterResource(R.drawable.bookmark),
                     contentDescription = null,
                     modifier = Modifier.align(Alignment.Center),
-                    tint = AppColors.primary100
+                    tint = if (recipe.isBookmarked) AppColors.primary100 else AppColors.gray3
                 )
             }
         }
@@ -127,7 +130,8 @@ fun HorizontalRecipeCardPreview() {
             time = "15 min",
             rating = 4.5
         ),
-        modifier = Modifier.padding(10.dp)
+        modifier = Modifier.padding(10.dp),
+        onBookmarkClick = {}
     ) { modifier ->
         Image(
             painter = painterResource(R.drawable.circle_recipe),
