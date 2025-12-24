@@ -7,16 +7,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.survivalcoding.gangnam2kiandroidstudy.presentation.search.SearchScreen
 import kotlinx.coroutines.flow.distinctUntilChanged
 import org.koin.androidx.compose.koinViewModel
 
@@ -53,12 +48,13 @@ fun SavedRecipesRoot(
     }
     LaunchedEffect(listState) {
         snapshotFlow {
-            val layoutInfo = listState.layoutInfo
+            /*val layoutInfo = listState.layoutInfo
             val lastVisibleItemIndex =
                 layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: 0
             val totalItemsCount = layoutInfo.totalItemsCount
 
-            lastVisibleItemIndex == totalItemsCount - 1
+            lastVisibleItemIndex == totalItemsCount - 1*/
+            !listState.canScrollForward && uiState.recipes.isNotEmpty()
         }
             .distinctUntilChanged()
             .collect { isBottom ->
