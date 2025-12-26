@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "398788401444",
+    "project_id": "gangnam2kiandroidstudy",
+    "storage_bucket": "gangnam2kiandroidstudy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398788401444:android:5814b73e65975871c87bb1",
+        "android_client_info": {
+          "package_name": "com.survivalcoding.gangnam2kiandroidstudy.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuVzVMaZCxrw9cG7Q3hZzzRqiV9XvKeWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
