@@ -30,21 +30,13 @@ fun NavigationRoot(
     modifier: Modifier = Modifier,
     deepLinkUri: Uri? = null
 ) {
-    val initialRoutes = remember(deepLinkUri) {
+    val deepLinkTarget = remember(deepLinkUri) {
         parseRecipeDeepLink(deepLinkUri)
     }
     val topLevelBackStack = rememberNavBackStack(
-        initialRoutes?.firstOrNull() ?: Route.Splash
+        if (deepLinkTarget != null) Route.Main else Route.Splash
     )
 
-    LaunchedEffect(initialRoutes) {
-        if (initialRoutes != null) {
-            topLevelBackStack.clear()
-            initialRoutes.forEach {
-                topLevelBackStack.add(it)
-            }
-        }
-    }
     NavDisplay(
         modifier = modifier,
         entryDecorators = listOf(
@@ -88,6 +80,22 @@ fun NavigationRoot(
             entry<Route.Main> {
                 val backStack = rememberNavBackStack(Route.Home)
 
+                LaunchedEffect(deepLinkTarget) {
+                    when (deepLinkTarget) {
+                        DeepLinkTarget.SavedRecipes -> {
+                            backStack.clear()
+                            backStack.add(Route.SavedRecipes)
+                        }
+                        is DeepLinkTarget.RecipeDetail -> {
+                            backStack.clear()
+                            backStack.add(Route.Home)
+                            topLevelBackStack.add(
+                                Route.RecipeDetails(deepLinkTarget.id)
+                            )
+                        }
+                        null -> Unit
+                    }
+                }
                 MainScreen(
                     backStack = backStack,
                     body = {
