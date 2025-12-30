@@ -1,0 +1,59 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  android-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. JDK 17 (AGP 8.x + Compose 권장)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      # 3. Gradle 실행 권한
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 4. Gradle 캐시
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # 5. Unit Test (dev, qa)
+      - name: Run Unit Tests (dev)
+        run: ./gradlew testDevDebugUnitTest --stacktrace
+
+      - name: Run Unit Tests (qa)
+        run: ./gradlew testQaDebugUnitTest --stacktrace
+
+      # 6. Debug Build (모든 flavor)
+      - name: Build Dev Debug APK
+        run: ./gradlew assembleDevDebug
+
+      - name: Build QA Debug APK
+        run: ./gradlew assembleQaDebug
+
+      - name: Build Prod Debug APK
+        run: ./gradlew assembleProdDebug
+
+      # 7. APK 업로드 (선택)
+      - name: Upload APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apks
+          path: |
+            app/build/outputs/apk/dev/debug/*.apk
+            app/build/outputs/apk/qa/debug/*.apk
+            app/build/outputs/apk/prod/debug/*.apk
