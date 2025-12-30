@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Disable Firebase for CI
+        run: echo "firebase.disable=true" >> gradle.properties
+
       # 1. Checkout
       - name: Checkout code
         uses: actions/checkout@v4
