@@ -18,6 +18,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Disable Firebase for CI
+        run: echo "firebase.disable=true" >> gradle.properties
+
       # 2. JDK 17 (AGP 8.x + Compose 권장)
       - name: Set up JDK 17
         uses: actions/setup-java@v4
