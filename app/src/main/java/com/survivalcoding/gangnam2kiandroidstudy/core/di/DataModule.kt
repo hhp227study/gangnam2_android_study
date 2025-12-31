@@ -34,7 +34,7 @@ val dataModule = module {
         ChefDataSourceImpl(get())
     }
     single<BookmarkDataSource> {
-        BookmarkDataSourceImpl()
+        BookmarkDataSourceImpl(get())
     }
     single<NetworkDataSource> {
         NetworkDataSourceImpl(get())

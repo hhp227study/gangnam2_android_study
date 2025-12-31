@@ -1,25 +1,23 @@
 package com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local
 
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDao
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.entity.BookmarkEntity
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
-class BookmarkDataSourceImpl : BookmarkDataSource {
-    private val bookmarkedIds = MutableStateFlow(listOf(1)) // 초기 북마크된 레시피
+class BookmarkDataSourceImpl(
+    private val bookmarkDao: BookmarkDao
+) : BookmarkDataSource {
 
     override fun getBookmarkedRecipeIds(): Flow<List<Int>> {
-        return bookmarkedIds.asStateFlow()
+        return bookmarkDao.getBookmarkedRecipeIds()
     }
 
     override suspend fun addBookmark(recipeId: Int): Boolean {
-        bookmarkedIds.update { it + recipeId }
-        return true
+        return bookmarkDao.insert(BookmarkEntity(recipeId)) > 0
     }
 
     override suspend fun removeBookmark(recipeId: Int): Boolean {
-        bookmarkedIds.update { it - recipeId }
-        return true
+        return bookmarkDao.delete(recipeId) > 0
     }
 }
