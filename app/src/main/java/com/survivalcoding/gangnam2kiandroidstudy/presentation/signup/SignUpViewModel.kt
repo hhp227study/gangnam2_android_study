@@ -23,9 +23,11 @@ class SignUpViewModel(
         viewModelScope.launch {
             signUpUseCase(email, password)
                 .onSuccess {
+                    _uiState.update { it.copy(isLoading = false) }
                     emitEvent(SignUpEvent.NavigateToMain)
                 }
                 .onFailure {
+                    _uiState.update { it.copy(isLoading = false) }
                     emitEvent(
                         SignUpEvent.ShowMessage(
                             it.localizedMessage ?: "Sign up failed"

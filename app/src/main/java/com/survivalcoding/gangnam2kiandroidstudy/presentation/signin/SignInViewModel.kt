@@ -24,9 +24,11 @@ class SignInViewModel(
         viewModelScope.launch {
             signInUseCase.invoke(email, password)
                 .onSuccess {
+                    _uiState.update { it.copy(isLoading = false) }
                     emitEvent(SignInEvent.NavigateToMain)
                 }
                 .onFailure {
+                    _uiState.update { it.copy(isLoading = false) }
                     emitEvent(SignInEvent.ShowMessage(it.localizedMessage))
                 }
         }
