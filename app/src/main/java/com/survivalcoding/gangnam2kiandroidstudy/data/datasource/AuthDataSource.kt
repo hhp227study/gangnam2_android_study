@@ -1,6 +1,6 @@
 package com.survivalcoding.gangnam2kiandroidstudy.data.datasource
 
-import com.google.firebase.auth.FirebaseUser
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.User
 
 interface AuthDataSource {
     suspend fun signUpWithEmail(email: String, password: String)
@@ -9,7 +9,7 @@ interface AuthDataSource {
 
     suspend fun signInWithGoogle(idToken: String)
 
-    suspend fun getCurrentUser(): FirebaseUser?
+    suspend fun getCurrentUser(): User?
 
     suspend fun signOut()
 }

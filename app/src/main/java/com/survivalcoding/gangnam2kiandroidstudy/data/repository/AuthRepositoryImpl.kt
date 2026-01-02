@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.repository
 
 import com.google.firebase.auth.FirebaseUser
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.AuthDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.User
 import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(
@@ -19,7 +20,7 @@ class AuthRepositoryImpl(
         return authDataSource.signInWithGoogle(idToken)
     }
 
-    override suspend fun getCurrentUser(): FirebaseUser? {
+    override suspend fun getCurrentUser(): User? {
         return authDataSource.getCurrentUser()
     }
 

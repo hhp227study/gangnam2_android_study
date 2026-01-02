@@ -1,9 +1,9 @@
 package com.survivalcoding.gangnam2kiandroidstudy.data.datasource.remote
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.AuthDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.domain.model.User
 import kotlinx.coroutines.tasks.await
 
 class AuthDataSourceImpl(private val firebaseAuth: FirebaseAuth) : AuthDataSource {
@@ -24,8 +24,14 @@ class AuthDataSourceImpl(private val firebaseAuth: FirebaseAuth) : AuthDataSourc
         firebaseAuth.signInWithCredential(credential).await()
     }
 
-    override suspend fun getCurrentUser(): FirebaseUser? {
-        return firebaseAuth.currentUser
+    override suspend fun getCurrentUser(): User? {
+        return firebaseAuth.currentUser?.let {
+            User(
+                uid = it.uid,
+                email = it.email,
+                displayName = it.displayName
+            )
+        }
     }
 
     override suspend fun signOut() {
