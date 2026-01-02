@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.core.di
 
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.AppAssetManager
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.AuthDataSource
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.ChefDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.IngredientDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.NetworkDataSource
@@ -13,6 +14,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.Ingredien
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.ProcedureDataSourceImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.RecipeDataSourceImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.remote.AuthDataSourceImpl
+import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.remote.BookmarkDataSourceImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.remote.NetworkDataSourceImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -38,5 +40,8 @@ val dataModule = module {
     }
     single<AuthDataSource> {
         AuthDataSourceImpl(get())
+    }
+    single<BookmarkDataSource> {
+        BookmarkDataSourceImpl(get())
     }
 }
