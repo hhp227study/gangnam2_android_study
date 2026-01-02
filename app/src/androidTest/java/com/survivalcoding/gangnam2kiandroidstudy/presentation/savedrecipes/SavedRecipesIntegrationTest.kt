@@ -5,9 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDao
-import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDataSource
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDatabase
-import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.BookmarkDataSourceImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.BookmarkRepositoryImpl
 import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.BookmarkRepository
 import kotlinx.coroutines.flow.first
@@ -23,7 +21,6 @@ import kotlin.test.assertTrue
 class SavedRecipesIntegrationTest {
     private lateinit var db: BookmarkDatabase
     private lateinit var dao: BookmarkDao
-    private lateinit var dataSource: BookmarkDataSource
     private lateinit var repository: BookmarkRepository
 
     @Before
@@ -31,8 +28,7 @@ class SavedRecipesIntegrationTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(context, BookmarkDatabase::class.java).allowMainThreadQueries().build()
         dao = db.bookmarkDao()
-        dataSource = BookmarkDataSourceImpl(dao)
-        repository = BookmarkRepositoryImpl(dataSource)
+        repository = BookmarkRepositoryImpl(dao)
     }
 
     @After

@@ -5,7 +5,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.BookmarkDatabase
 import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.MockRecipeDataSource
-import com.survivalcoding.gangnam2kiandroidstudy.data.datasource.local.BookmarkDataSourceImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.BookmarkRepositoryImpl
 import com.survivalcoding.gangnam2kiandroidstudy.data.repository.RecipeRepositoryImpl
 import com.survivalcoding.gangnam2kiandroidstudy.domain.usecase.GetSavedRecipesUseCase
@@ -89,8 +88,7 @@ class SavedRecipesViewModelFakeTest {
         val recipeRepository = RecipeRepositoryImpl(recipeDataSource)
         val db = Room.inMemoryDatabaseBuilder(context, BookmarkDatabase::class.java).allowMainThreadQueries().build()
         val dao = db.bookmarkDao()
-        val bookmarkDataSource = BookmarkDataSourceImpl(dao)
-        val bookmarkRepository = BookmarkRepositoryImpl(bookmarkDataSource)
+        val bookmarkRepository = BookmarkRepositoryImpl(dao)
         val savedRecipeUsecase = GetSavedRecipesUseCase(recipeRepository, bookmarkRepository)
         val removeUseCase = ToggleBookmarkUseCase(bookmarkRepository)
         val viewModel = SavedRecipesViewModel(savedRecipeUsecase, removeUseCase)
@@ -117,8 +115,7 @@ class SavedRecipesViewModelFakeTest {
         val recipeRepository = RecipeRepositoryImpl(recipeDataSource)
         val db = Room.inMemoryDatabaseBuilder(context, BookmarkDatabase::class.java).allowMainThreadQueries().build()
         val dao = db.bookmarkDao()
-        val bookmarkDataSource = BookmarkDataSourceImpl(dao)
-        val bookmarkRepository = BookmarkRepositoryImpl(bookmarkDataSource)
+        val bookmarkRepository = BookmarkRepositoryImpl(dao)
         val savedRecipeUsecase = GetSavedRecipesUseCase(recipeRepository, bookmarkRepository)
         val removeUseCase = ToggleBookmarkUseCase(bookmarkRepository)
         val viewModel = SavedRecipesViewModel(savedRecipeUsecase, removeUseCase)
